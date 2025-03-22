@@ -3,6 +3,7 @@ package acme;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 /**
@@ -24,26 +25,42 @@ public class App {
 
         log.info("Step 2: minutes={}", minutes);
 
-        return minutes;
+        if (minutes % 2 == 0) {
+            return minutes;
+        } else {
+            throw new IllegalStateException(String.format("Minutes is invalid because odd (minutes=%d)", minutes));
+        }
     }
 
-    private static int getSeconds() {
+    private static int getSeconds() throws IOException {
         int seconds = LocalDateTime.now().getSecond();
 
         log.info("Step 3: seconds={}", seconds);
 
-        return seconds;
+        if (seconds % 2 == 0) {
+            return seconds;
+        } else {
+            throw new IOException(String.format("Seconds is invalid because odd (seconds=%d)", seconds));
+        }
     }
 
     public static void main(String[] args) {
-        log.info("Starting...");
+        try {
+            log.info("Starting...");
 
-        int sum = 0;
+            int sum = 0;
 
-        sum += getHours();
-        sum += getMinutes();
-        sum += getSeconds();
+            sum += getHours();
+            sum += getMinutes();
+            sum += getSeconds();
 
-        log.info("Done: sum={}", sum);
+            log.info("Done: sum={}", sum);
+
+            System.exit(0);
+        } catch (Exception e) {
+            log.error("Calculation error", e);
+
+            System.exit(1);
+        }
     }
 }

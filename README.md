@@ -1,6 +1,6 @@
 # Command line interface (CLI) with logging in Java
 
-The example demonstrates how to create command line application in *Java 8+* with logging.
+The example demonstrates how to create command line application with logging in *Java 8+*.
 
 ## Requirements
 

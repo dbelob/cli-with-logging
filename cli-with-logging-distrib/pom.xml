@@ -21,7 +21,7 @@
                 <version>${maven-assembly-plugin.version}</version>
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
-                    <finalName>${app.finalName}-${project.version}-no-jre</finalName>
+                    <finalName>${app.finalName}-${project.version}</finalName>
                     <descriptors>
                         <descriptor>assembly.xml</descriptor>
                     </descriptors>
